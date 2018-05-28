@@ -1,5 +1,6 @@
 from mtgsdk import Set
 from mtgsdk import Card
+import DocumentWriter
 
 
 class ApiAccessor:
@@ -17,7 +18,9 @@ def main():
 
 apiAccessor = ApiAccessor()
 for mtgSet in apiAccessor.getAllSets():
-    print(mtgSet.name)
+    print(mtgSet.code)
 
 
 print(len(apiAccessor.getAllCardsForSet("LEA").all()))
+
+DocumentWriter.createDocumentTest()
