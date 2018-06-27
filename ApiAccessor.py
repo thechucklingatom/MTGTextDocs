@@ -3,6 +3,7 @@ from mtgsdk import Card
 import DocumentWriter
 import tkinter
 import ttk
+import threading
 
 
 class ApiAccessor:
@@ -31,9 +32,12 @@ def name_list(set_list):
 
 class Application(tkinter.Frame):
 
+    def on_click(self):
+        t = threading.Thread(target=self.create_document)
+        t.start()
+
     def create_document(self):
-        api_accessor = ApiAccessor()
-        DocumentWriter.create_document_test(api_accessor.get_all_cards_for_set(self.set_list.get()).all())
+        DocumentWriter.create_document_test(apiAccessor.get_all_cards_for_set(self.set_list.get()).all())
 
     def __init__(self, master=tkinter.Tk()):
         master.geometry("500x500")
@@ -45,7 +49,7 @@ class Application(tkinter.Frame):
         self.set_list.grid()
         self.quit_button = tkinter.Button(self, text="Quit", command=self.quit)
         self.quit_button.grid()
-        self.create_button = tkinter.Button(self, text="Create document", command=self.create_document)
+        self.create_button = tkinter.Button(self, text="Create document", command=self.on_click)
         self.create_button.grid()
 
 
