@@ -1,5 +1,5 @@
 def create_document_test(cards):
-    if cards is None:
+    if len(cards) < 1:
         return
     document = open(cards[0].set + ".txt", "w")
     for card in cards:
