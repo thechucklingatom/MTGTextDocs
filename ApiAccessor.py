@@ -16,7 +16,7 @@ class ApiAccessor:
     def get_all_cards_for_set(name):
         if name is '':
             return Card.where(set="asdfasdfasdfasdf")
-        return Card.where(set_name=name)
+        return Card.where(setName=name)
 
 
 apiAccessor = ApiAccessor()
@@ -37,7 +37,7 @@ class Application(tkinter.Frame):
         t.start()
 
     def create_document(self):
-        DocumentWriter.create_document_test(apiAccessor.get_all_cards_for_set(self.set_list.get()).all())
+        DocumentWriter.create_document_test(apiAccessor.get_all_cards_for_set(self.set_list.get()).iter(), self.set_list.get())
 
     def __init__(self, master=tkinter.Tk()):
         master.geometry("500x500")
